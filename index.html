@@ -33,8 +33,39 @@
         icon.x=100;
         icon.y=100;
         var image=new Image();
+        image.addEventListener("load", loadHandler)
         image.src="sprite.png"
-        var x
+        var Xspeed =0;
+        var moveLeft= false;
+        var moveRight=false;
+
+
+        window.addEventListener("keydown", function(e)
+        {
+            switch(key)
+            {
+                case "ArrowRight":
+                    moveRight =true;
+                    break;
+                case "ArrowLeft":
+                    moveLeft=true;
+                    break;
+            }
+        }, false);
+
+        window.addEventListener("keyup", function(e)
+        {
+            switch(key)
+            {
+                case "ArrowRight":
+                    moveRight =true;
+                    break;
+                case "ArrowLeft":
+                    moveLeft=true;
+                    break;
+            }
+        }, false);
+    
     </script>
 </body>
 </html>
