@@ -22,11 +22,13 @@
     </h1>
     <canvas width="900" height="540"></canvas>    
     <script>
-        var sprite ={
+        var canvas =document.querySelector("canvas");
+        var drawingSurface=canvas.getContext("2d");
+        var spriteObject ={
             x:0,
             y:0,
             width:64,
-            height:64,
+            height:64
         }
 
         var icon = Object.create(spriteObject);
@@ -42,7 +44,7 @@
 
         window.addEventListener("keydown", function(e)
         {
-            switch(key)
+            switch(e.key)
             {
                 case "ArrowRight":
                     moveRight =true;
@@ -55,16 +57,40 @@
 
         window.addEventListener("keyup", function(e)
         {
-            switch(key)
+            switch(e.key)
             {
                 case "ArrowRight":
-                    moveRight =true;
+                    moveRight =false;
                     break;
                 case "ArrowLeft":
-                    moveLeft=true;
+                    moveLeft=false;
                     break;
             }
         }, false);
+
+        function loadHandler(){
+            update();
+        }
+        function update(){
+            window.requestAnimationFrame(update, canvas);
+            icon.x+=Xspeed;
+
+            if (moveLeft && !moveRight){
+                Xspeed=-5;
+            }
+            if (moveRight && !moveLeft){
+                Xspeed=5;
+            }
+            if (!moveRight&& !moveLeft){
+                Xspeed=0;
+            }
+            if(icon.x<0){
+                Xspeed=0;
+            }
+        }
+        function render(){
+
+        }
     
     </script>
 </body>
